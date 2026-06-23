@@ -1,0 +1,25 @@
+{
+  "StartAt": "Validar Pedido",
+  "States": {
+    "Validar Pedido": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ID:function:validar_pedido",
+      "Next": "Processar Pagamento"
+    },
+    "Processar Pagamento": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ID:function:processar_pagamento",
+      "Next": "Atualizar Status"
+    },
+    "Atualizar Status": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ID:function:atualizar_status",
+      "Next": "Resposta IA"
+    },
+    "Resposta IA": {
+      "Type": "Pass",
+      "Result": "Seu pedido foi processado com sucesso!",
+      "End": true
+    }
+  }
+}
